@@ -1,0 +1,9 @@
+*.class
+**/*.class
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+TPEPOD/target/classes
+.idea/*
+TPEPOD/.idea/vcs.xml
+TPEPOD/.idea/workspace.xml
+TPEPOD/src/main/java/META-INF/

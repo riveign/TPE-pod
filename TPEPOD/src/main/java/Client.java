@@ -45,6 +45,7 @@ public class Client {
         ccfg.getGroupConfig().setName(name).setPassword(pass);
 
         String addresses = System.getProperty("addresses");
+        System.out.println(addresses);
         if (addresses != null) {
             String[] arrayAddresses = addresses.split("[,;]");
             ClientNetworkConfig net = new ClientNetworkConfig();
@@ -56,6 +57,7 @@ public class Client {
         System.out.println(client.getCluster());
 
         IMap<String, Movie> map = client.getMap(MAP_NAME);
+
 
         for (Movie movie: movieArray){
             if (movie.getYear() != 0){

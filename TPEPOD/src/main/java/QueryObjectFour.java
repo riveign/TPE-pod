@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Created by riveign on 11/11/15.
  */
-public class QueryObjectFour {
+public class QueryObjectFour implements Serializable {
 
     private String director;
     private String actor;

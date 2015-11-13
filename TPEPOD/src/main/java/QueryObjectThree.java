@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Created by riveign on 11/11/15.
  */
-public class QueryObjectThree {
+public class QueryObjectThree implements Serializable {
 
     private String actorOne;
     private String actorTwo;
@@ -18,7 +20,7 @@ public class QueryObjectThree {
 
         QueryObjectThree that = (QueryObjectThree) o;
 
-        return (actorOne.equals(that.actorOne) || actorOne.equals(that.actorTwo)) && (actorTwo.equals(that.actorOne) || actorTwo.equals(that.actorTwo));
+        return (actorOne.equals(that.actorOne) && actorTwo.equals(that.actorTwo)) || (actorTwo.equals(that.actorOne) && actorOne.equals(that.actorTwo));
     }
 
     @Override

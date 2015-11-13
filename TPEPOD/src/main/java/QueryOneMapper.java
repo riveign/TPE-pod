@@ -10,8 +10,9 @@ import java.util.StringTokenizer;
 public class QueryOneMapper implements Mapper<String, Movie, String, Long> {
 
     public void map(String s, Movie movie, Context<String, Long> context) {
+
         for (String actor : movie.getActors())    {
-            context.emit(actor, (long) movie.getImdbRating());
+            context.emit(actor, (long) movie.getImdbVotes());
         }
     }
 }

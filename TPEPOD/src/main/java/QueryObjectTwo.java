@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Created by riveign on 11/11/15.
  */
-public class QueryObjectTwo {
+public class QueryObjectTwo implements Serializable {
 
     private String name;
     private Long score;
