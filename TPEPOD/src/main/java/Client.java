@@ -128,8 +128,10 @@ public class Client {
                     break;
             case 2: queryBuilder = new QueryTwoBuilder();
                     break;
-            // case 3:
-            // case 4:
+            case 3: queryBuilder = new QueryThreeBuilder();
+                    break;
+            case 4: queryBuilder = new QueryFourBuilder();
+                    break;
             default: throw new IllegalArgumentException();
         }
         queryBuilder.build(job);
