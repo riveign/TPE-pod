@@ -14,9 +14,7 @@ import org.codehaus.jackson.map.module.SimpleModule;
 
 import java.io.*;
 import java.sql.Timestamp;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 
@@ -63,7 +61,17 @@ public class Client {
         path = System.getProperty("path");
 
         timestampMsg("Starting to read file.");
-        Movie[] movieArray = new ObjectMapper().readValue(new FileReader(path), Movie[].class);
+        Movie[] mArray = new ObjectMapper().readValue(new FileReader(path), Movie[].class);
+        int end = mArray.length;
+        Set<Movie> set = new HashSet<Movie>();
+
+        for(int i = 0; i < end; i++){
+            set.add(mArray[i]);
+        }
+
+        end = set.size();
+
+        Movie[] movieArray = (Movie[])set.toArray(new Movie[end]);
         timestampMsg("Finished reading file.");
 
         System.out.println(String.format("Connecting with cluster dev-name [%s]", name));

@@ -17,6 +17,7 @@ public class QueryTwoReducer implements ReducerFactory<Integer, QueryObjectTwo, 
 
             public void reduce(QueryObjectTwo actual) {
                 if (actual.getScore() > top) {
+                    top = actual.getScore();
                     best = actual;
                 }
             }
