@@ -12,7 +12,7 @@ public class QueryTwoReducer implements ReducerFactory<Integer, QueryObjectTwo, 
             private QueryObjectTwo best;
 
             public void beginReduce() {
-                top = 0;
+                top = -1;
             }
 
             public void reduce(QueryObjectTwo actual) {

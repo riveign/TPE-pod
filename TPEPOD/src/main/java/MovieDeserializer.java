@@ -29,7 +29,11 @@ public class MovieDeserializer extends JsonDeserializer<Movie> {
         Integer year = node.get("Year").asInt();
         double rating = node.get("imdbRating").asDouble();
         long meta = node.get("Metascore").asLong();
-        long imdbVotes = node.get("imdbVotes").asLong();
+        String imdbVotesStr = node.get("imdbVotes").asText();
+        if(imdbVotesStr.equals("N/A")) {
+            imdbVotesStr = "0";
+        }
+        long imdbVotes = Long.valueOf(imdbVotesStr.replaceAll(",", ""));
         return new Movie(name,year,rating,director,actors_list, imdbVotes, meta);
     }
 }
