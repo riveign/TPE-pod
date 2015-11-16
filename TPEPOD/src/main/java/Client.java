@@ -127,6 +127,14 @@ public class Client {
                     }
                     break;
             case 2: queryBuilder = new QueryTwoBuilder();
+                    String top = System.getProperty("Top");
+                    if(top != null) {
+                        try {
+                            ((QueryTwoBuilder)queryBuilder).setTop(Integer.parseInt(top));
+                        } catch(NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     break;
             case 3: queryBuilder = new QueryThreeBuilder();
                     break;
