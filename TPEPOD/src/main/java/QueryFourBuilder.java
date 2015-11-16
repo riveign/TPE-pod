@@ -1,7 +1,10 @@
 import com.hazelcast.core.ICompletableFuture;
 import com.hazelcast.mapreduce.Job;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -26,7 +29,15 @@ public class QueryFourBuilder implements QueryBuilder<QueryObjectFour, Integer> 
     }
 
     public void show() {
-        System.out.println(ans);
+        TreeMap<QueryObjectFour, Integer> tree = new TreeMap<QueryObjectFour, Integer>(new Comparator<QueryObjectFour>() {
+            public int compare(QueryObjectFour a, QueryObjectFour b) {
+                return ans.get(b) - ans.get(a);
+            }
+        });
+        tree.putAll(ans);
+        for(QueryObjectFour s: tree.keySet()) {
+            System.out.println("Director: " + s.getDirector() + ", Actor: " + s.getActor() + ", Appearances: " + tree.get(s));
+        }
         Client.timestampMsg("Done.");
     }
 }
