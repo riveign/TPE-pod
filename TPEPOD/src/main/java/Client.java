@@ -62,16 +62,12 @@ public class Client {
 
         timestampMsg("Starting to read file.");
         Movie[] mArray = new ObjectMapper().readValue(new FileReader(path), Movie[].class);
-        int end = mArray.length;
-        Set<Movie> set = new HashSet<Movie>();
+        Map<String, Movie> mMap = new HashMap<String, Movie>();
 
-        for(int i = 0; i < end; i++){
-            set.add(mArray[i]);
+        for(int i = 0; i < mArray.length; i++){
+            mMap.put(mArray[i].getTitle(), mArray[i]);
         }
 
-        end = set.size();
-
-        Movie[] movieArray = (Movie[])set.toArray(new Movie[end]);
         timestampMsg("Finished reading file.");
 
         System.out.println(String.format("Connecting with cluster dev-name [%s]", name));
@@ -90,13 +86,8 @@ public class Client {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(ccfg);
 
         IMap<String, Movie> map = client.getMap(MAP_NAME);
+        map.putAll(mMap);
 
-
-        for (Movie movie: movieArray){
-            if (movie.getYear() != 0){
-                map.put(movie.getTitle(),movie);
-            }
-        }
 
         JobTracker tracker = client.getJobTracker("default");
 
